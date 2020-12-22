@@ -1,4 +1,4 @@
 # postapi
-Usando pipenv paragerenciamento de pacotes python
- intalar: pip install pipenv
- rodar: na pasta executar o comando >> pipenv shell
+Usando pipenv paragerenciamento de pacotes python <br />
+ - intalar: pip install pipenv <br />
+ - rodar: na pasta executar o comando >> pipenv shell <br />
