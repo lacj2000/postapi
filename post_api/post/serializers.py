@@ -11,3 +11,10 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ('id', 'title','body')
+
+
+class PostCommentSerializer(serializers.ModelSerializer):
+    comments = CommentSerializer(many=True)
+    class Meta:
+        model = Post
+        fields = ('id', 'title','body','comments')

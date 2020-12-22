@@ -10,10 +10,10 @@ from django.core.exceptions import ObjectDoesNotExist
 def profile_list(request):
     if request.method=='GET':
         profiles = Profile.objects.all()
-        profiles_serializers = ProfileSerializers(profiles, many=True)
+        profiles_serializers = ProfileAddressSerializers(profiles, many=True)
         return Response(profiles_serializers.data)
     elif request.method == 'POST':
-        profile_serializers = ProfileSerializers(data=request.data)
+        profile_serializers = ProfileAddressSerializers(data=request.data)
         if profile_serializers.is_valid():
             profile_serializers.save()
             return Response(profile_serializers.data, status= status.HTTP_201_CREATED)
@@ -27,10 +27,10 @@ def detail_profile(request, id):
     except ObjectDoesNotExist:    
         return Response(status = status.HTTP_404_NOT_FOUND)
     if request.method=='GET':
-        profile_serializer = ProfileSerializers(profile)
+        profile_serializer = ProfileAddressSerializers(profile)
         return Response(profile_serializer.data)
     elif request.method == 'PUT':
-        profile_serializers = ProfileSerializers(profile, data=request.data)
+        profile_serializers = ProfileAddressSerializers(profile, data=request.data)
         if profile_serializers.is_valid():
             profile_serializers.save()
             return Response(profile_serializers.data,status=status.HTTP_200_OK)

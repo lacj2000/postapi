@@ -8,7 +8,7 @@ class AddressSerializers(serializers.ModelSerializer):
         model = Address
         fields = ('id', 'street', 'suite', 'city', 'zipcode')
 
-class ProfileSerializers(serializers.ModelSerializer):
+class ProfileAddressSerializers(serializers.ModelSerializer):
     address = AddressSerializers()
     
     
