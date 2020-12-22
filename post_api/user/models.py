@@ -2,11 +2,16 @@ from django.db import models
 
 class Address(models.Model):
     street = models.CharField(max_length=128)
-    suite = models.IntegerField()
+    suite = models.CharField(max_length=128)
     city = models.CharField(max_length=128)
-    zipcode = models.CharField(max_length=9)
+    zipcode = models.CharField(max_length=128)
+    def __str__(self):
+        return self.street
+
 
 class Profile(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField()
-    adress = models.ForeignKey('Address',on_delete=models.CASCADE)
+    address = models.ForeignKey('Address',on_delete=models.CASCADE) 
+    def __str__(self):
+        return self.name
