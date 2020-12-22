@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from user.models import Profile
-from user.serializers import ProfileSerializers
+from user.serializers import *
 from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['GET','POST'])
@@ -38,3 +38,22 @@ def detail_profile(request, id):
     elif request.method == 'DELETE':
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def list_profile_post(request):
+    if request.method == 'GET':
+        profiles = Profile.objects.all()
+        profile_post_serializers = ProfilePostSerializer(profiles, many=True)
+        return Response(profile_post_serializers.data)
+
+
+
+@api_view(['GET'])
+def detail_profile_post(request, id):
+    if request.method == 'GET':
+        try:
+            profile = Profile.objects.get(id=id)
+        except ObjectDoesNotExist:    
+            return Response(status = status.HTTP_404_NOT_FOUND)
+        profile_post_serializer = ProfilePostSerializer(profile)
+        return Response(profile_post_serializer.data)

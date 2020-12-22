@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from user.models import * 
+from post.serializers import PostSerializer
 
 
 class AddressSerializers(serializers.ModelSerializer):
@@ -41,3 +42,10 @@ class ProfileSerializers(serializers.ModelSerializer):
         
         return instance
 
+
+
+class ProfilePostSerializer(serializers.ModelSerializer):
+    posts = PostSerializer(many=True)
+    class Meta:
+        model = Profile
+        fields = ('id','name','email', 'posts') 
