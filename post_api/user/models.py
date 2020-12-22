@@ -12,6 +12,6 @@ class Address(models.Model):
 class Profile(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField()
-    address = models.ForeignKey('Address',on_delete=models.CASCADE) 
+    address = models.ForeignKey('Address',related_name='address',on_delete=models.CASCADE) 
     def __str__(self):
         return self.name
